@@ -6,3 +6,8 @@ export const getCourses = () => {
     let url = `${BASE_URL}/api/courses/`
     return axios.get(url)
 }
+
+export const getCourse = (courseId) => {
+    let url = `${BASE_URL}/api/courses/${courseId}`
+    return axios.get(url)
+}
