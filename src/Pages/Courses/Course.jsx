@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {getCourse} from "../../Services/courseServices";
+import {getChapter, getCourse} from "../../Services/courseServices";
 import ChaptersAccordion from "../../Components/Chapters/ChaptersAccordion";
 
 const Course = () => {
     const [course, setCourse] = useState([])
+    const [chapter, setChapter] = useState([])
 
-    const {id: courseId} = useParams()
+    const {courseId} = useParams()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +20,16 @@ const Course = () => {
         }
 
         fetchData()
-    }, [])
+    }, [courseId])
+
+    const getChapterContent = async (chapterId) => {
+        try {
+            const {data: chapterData} = await getChapter(chapterId)
+            setChapter(chapterData)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <>
@@ -27,6 +37,9 @@ const Course = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <h1>{course.title}</h1>
+                        <button className="btn btn-outline-primary my-2">
+                            افزودن به سبد خرید
+                        </button>
                     </div>
                     <hr/>
                     <div className="col-md-12 my-3">
@@ -44,7 +57,7 @@ const Course = () => {
                             </tr>
                             <tr>
                                 <th scope="row">قیمت:</th>
-                                <td>{course.price}</td>
+                                <td>{course.price === 0 ? "رایگان" : course.price}</td>
                             </tr>
                             <tr>
                                 <th scope="row">موضوعات:</th>
@@ -72,7 +85,12 @@ const Course = () => {
                         <div className="accordion" id="accordionExample">
                             {
                                 course.chapters?.map((c) => (
-                                    <ChaptersAccordion key={c.id} chapter={c}/>
+                                    <ChaptersAccordion
+                                        key={c.id}
+                                        chapter={c}
+                                        getChapterContent={getChapterContent}
+                                        chapterDetail={chapter}
+                                    />
                                 ))
                             }
                         </div>

@@ -11,3 +11,8 @@ export const getCourse = (courseId) => {
     let url = `${BASE_URL}/api/courses/${courseId}`
     return axios.get(url)
 }
+
+export const getChapter = (chapterId) => {
+    let url = `${BASE_URL}/api/chapters/${chapterId}`
+    return axios.get(url)
+}

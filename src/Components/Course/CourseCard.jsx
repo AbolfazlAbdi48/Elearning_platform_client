@@ -10,7 +10,7 @@ const CourseCard = ({course}) => {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">مدرس: {course.owner_name}</li>
                         <li className="list-group-item">تعداد فصل ها: {course.chapters_count} فصل</li>
-                        <li className="list-group-item">قیمت: {course.price.toLocaleString()} تومان</li>
+                        <li className="list-group-item">قیمت: {course.price === 0 ? "رایگان" : course.price.toLocaleString()} </li>
                     </ul>
                     <div>
                         {
