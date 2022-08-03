@@ -30,11 +30,12 @@ const App = () => {
         fetchUser()
     }, [dispatch])
 
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const {isLoggedIn, user} = useSelector((state) => state.auth)
+    console.log(user)
 
     return (
         <>
-            <NavigationBar/>
+            <NavigationBar user={user} />
             <Routes>
                 <Route path="/" element={<Navigate to="/courses/"/>}/>
                 <Route path="/courses/" element={<Courses/>}/>

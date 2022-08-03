@@ -3,8 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {authActions} from "../../store/authSlice";
 import LoadingBar from "react-redux-loading-bar";
 
-const NavigationBar = () => {
-    const user = useSelector((state) => state.auth.user)
+const NavigationBar = ({user}) => {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
     const dispatch = useDispatch()
@@ -46,7 +45,7 @@ const NavigationBar = () => {
                                                 className={activeLink}
                                                 to="/auth/account"
                                             >
-                                               حساب کاربری
+                                                سلام, {user.first_name}
                                             </NavLink>
                                         </li>
                                         <li className="nav-item">
