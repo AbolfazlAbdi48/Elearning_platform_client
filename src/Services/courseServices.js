@@ -16,3 +16,17 @@ export const getChapter = (chapterId) => {
     let url = `${BASE_URL}/api/chapters/${chapterId}`
     return axios.get(url)
 }
+
+export const getCurrentUser = (token) => {
+    let url = `${BASE_URL}/api/rest-auth/user/`
+    return axios.get(url, {
+        headers: {
+            'Authorization': `Token ${token}`
+        }
+    })
+}
+
+export const loginUser = (user) => {
+    let url = `${BASE_URL}/api/rest-auth/login/`
+    return axios.post(url, user)
+}

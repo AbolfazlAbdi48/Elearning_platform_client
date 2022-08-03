@@ -27,7 +27,7 @@ const Courses = () => {
                     </div>
                     {
                         courses.map(course => (
-                            <CourseCard key={course.id} course={course} />
+                            <CourseCard key={course.id} course={course}/>
                         ))
                     }
                 </div>
