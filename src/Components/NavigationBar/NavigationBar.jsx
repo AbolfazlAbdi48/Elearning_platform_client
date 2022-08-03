@@ -46,16 +46,16 @@ const NavigationBar = () => {
                                                 className={activeLink}
                                                 to="/auth/account"
                                             >
-                                                سلام, {user.first_name}
+                                               حساب کاربری
                                             </NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <span
-                                                className="nav-link"
+                                            <button
+                                                className="nav-link btn btn-outline-danger btn-sm"
                                                 onClick={logoutHandler}
                                             >
                                                 خروج
-                                            </span>
+                                            </button>
                                         </li>
                                     </>
                                 ) : (

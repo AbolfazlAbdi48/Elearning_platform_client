@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import {authActions} from "./store/authSlice";
 import {getCurrentUser} from "./Services/courseServices";
 import Login from "./Pages/Register/Login";
+import Profile from "./Pages/Account/Profile";
 
 const App = () => {
     const dispatch = useDispatch()
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path="/" element={<Navigate to="/courses/"/>}/>
                 <Route path="/courses/" element={<Courses/>}/>
                 <Route path="/courses/:courseId/:slug" element={<Course/>}/>
+                <Route path="/auth/account" element={<Profile/>}/>
                 {!isLoggedIn && <Route path="/auth/login" element={<Login/>}/>}
             </Routes>
         </>
