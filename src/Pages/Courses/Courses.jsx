@@ -1,22 +1,8 @@
-import {useState, useEffect} from "react";
-import {getCourses} from "../../Services/courseServices";
 import CourseCard from "../../Components/Course/CourseCard";
+import {useSelector} from "react-redux";
 
 const Courses = () => {
-    const [courses, setCourses] = useState([])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const {data: coursesData} = await getCourses()
-                setCourses(coursesData)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
-        fetchData()
-    }, [])
+    const courses = useSelector((state) => state.courses.coursesList)
 
     return (
         <>

@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {loginUser} from "../../Services/courseServices";
 import {useDispatch} from "react-redux";
 import {authActions} from "../../store/authSlice";
+import {hideLoading, showLoading} from "react-redux-loading-bar";
 
 const Login = () => {
     const [username, setUsername] = useState("")
@@ -28,13 +29,16 @@ const Login = () => {
             console.log(user)
             const {status, data} = await loginUser(user)
             if (status === 200) {
+                dispatch(showLoading())
                 localStorage.setItem("token", data.key)
                 reset()
                 dispatch(authActions.login(data))
                 navigate('/')
+                dispatch(hideLoading())
             }
         } catch (err) {
             setErrors(err.response.data)
+            dispatch(hideLoading())
         }
     }
 
