@@ -3,10 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import { getChapter, getCourse } from "../../Services/courseServices";
 import ChaptersAccordion from "../../Components/Chapters/ChaptersAccordion";
 import { useDispatch, useSelector } from "react-redux";
-import { courseFetch } from "../../store/courseSlice";
+import { chapterContentFetch, courseFetch } from "../../store/courseSlice";
 
 const Course = () => {
-    const [chapter, setChapter] = useState([])
     const dispatch = useDispatch()
     const { courseId } = useParams()
 
@@ -14,16 +13,11 @@ const Course = () => {
         dispatch(courseFetch(parseInt(courseId)))
     }, [])
 
-    const { item: course } = useSelector((state) => state.course)
-
-    const getChapterContent = async (chapterId) => {
-        try {
-            const { data: chapterData } = await getChapter(chapterId)
-            setChapter(chapterData)
-        } catch (err) {
-            console.log(err)
-        }
+    const getChapterContent = (chapterId) => {
+        dispatch(chapterContentFetch(chapterId))
     }
+
+    const { item: course, chapterData: chapter } = useSelector((state) => state.course)
 
     return (
         <>
