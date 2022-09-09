@@ -31,7 +31,6 @@ const App = () => {
     }, [dispatch])
 
     const {isLoggedIn, user} = useSelector((state) => state.auth)
-    console.log(user)
 
     return (
         <>
