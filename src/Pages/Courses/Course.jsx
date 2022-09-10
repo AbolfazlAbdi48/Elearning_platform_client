@@ -4,6 +4,7 @@ import { getChapter, getCourse } from "../../Services/courseServices";
 import ChaptersAccordion from "../../Components/Chapters/ChaptersAccordion";
 import { useDispatch, useSelector } from "react-redux";
 import { chapterContentFetch, courseFetch } from "../../store/courseSlice";
+import CenterLoader from "../../Components/Loding/CenterLoader";
 
 const Course = () => {
     const dispatch = useDispatch()
@@ -17,10 +18,11 @@ const Course = () => {
         dispatch(chapterContentFetch(chapterId))
     }
 
-    const { item: course, chapterData: chapter } = useSelector((state) => state.course)
+    const { item: course, chapterData: chapter, loading } = useSelector((state) => state.course)
 
     return (
         <>
+            {loading && <CenterLoader />}
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-12">

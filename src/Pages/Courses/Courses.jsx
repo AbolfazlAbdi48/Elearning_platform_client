@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import CourseCard from "../../Components/Course/CourseCard";
-import {useSelector} from "react-redux";
+import CenterLoader from "../../Components/Loding/CenterLoader";
 
 const Courses = () => {
-    const courses = useSelector((state) => state.courses.coursesList)
+    const { coursesList: courses, loading } = useSelector((state) => state.courses)
 
     return (
         <>
+            {loading && <CenterLoader />}
             <div className="container my-5">
                 <div className="row">
                     <div className="col-md-12">
@@ -13,7 +15,7 @@ const Courses = () => {
                     </div>
                     {
                         courses.map(course => (
-                            <CourseCard key={course.id} course={course}/>
+                            <CourseCard key={course.id} course={course} />
                         ))
                     }
                 </div>

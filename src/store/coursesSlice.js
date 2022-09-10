@@ -15,10 +15,14 @@ export const coursesFetch = createAsyncThunk(
 
 export const coursesSlice = createSlice({
   name: "courses",
-  initialState: { coursesList: [] },
+  initialState: { coursesList: [], loading: false },
   reducers: {},
   extraReducers: {
+    [coursesFetch.pending]: (state) => {
+      state.loading = true;
+    },
     [coursesFetch.fulfilled]: (state, action) => {
+      state.loading = false;
       state.coursesList = action.payload;
     },
   },
