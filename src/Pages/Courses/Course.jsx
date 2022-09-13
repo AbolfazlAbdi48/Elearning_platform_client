@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getChapter, getCourse } from "../../Services/courseServices";
 import ChaptersAccordion from "../../Components/Chapters/ChaptersAccordion";
 import { useDispatch, useSelector } from "react-redux";
 import { chapterContentFetch, courseFetch } from "../../store/courseSlice";
@@ -27,19 +26,10 @@ const Course = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <h1>{course?.title}</h1>
-                        <button className="btn btn-outline-primary my-2">
-                            افزودن به سبد خرید
-                        </button>
                     </div>
                     <hr />
                     <div className="col-md-12 my-3">
                         <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">سربرگ</th>
-                                    <th scope="col">اطلاعات</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">نام مدرس:</th>
@@ -47,7 +37,7 @@ const Course = () => {
                                 </tr>
                                 <tr>
                                     <th scope="row">قیمت:</th>
-                                    <td>{course?.price === 0 ? "رایگان" : course?.price}</td>
+                                    <td>{course?.price === 0 ? "رایگان" : course?.price?.toLocaleString()}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">موضوعات:</th>
@@ -67,6 +57,14 @@ const Course = () => {
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div className="col-md-4 my-3">
+                        <div className="border rounded p-2">
+                            <button className="btn btn-outline-primary w-100">
+                                <i className="fas fa-graduation-cap me-2"></i>
+                                شرکت در دوره
+                                </button>
+                        </div>
                     </div>
                     <div className="col-md-12">
                         <h1>فصل ها</h1>

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const ChaptersAccordion = ({ chapter, getChapterContent, chapterDetail }) => {
     return (
         <>
@@ -21,13 +19,26 @@ const ChaptersAccordion = ({ chapter, getChapterContent, chapterDetail }) => {
                         chapterDetail?.contents ? (
                             <div className="accordion-body">
                                 درباره فصل: {chapterDetail?.description}
-                                <h4>محتوای فصل:</h4>
+                                <h4 className="my-2">محتوای فصل:</h4>
                                 <div className="card">
                                     <div className="card-body">
                                         {
                                             chapterDetail?.contents?.length > 0 ?
                                                 chapterDetail?.contents?.map(content => (
-                                                    <Link key={content.id} to="">{content.title}</Link>
+                                                    <div
+                                                        key={content.id}
+                                                        className="d-flex justify-content-between align-items-center
+                                                         flex-column flex-sm-row border-bottom pb-3 mb-3"
+                                                    >
+                                                        <p>
+                                                            <strong>{content.title} </strong>
+                                                            - <small>{content.description}</small>
+                                                        </p>
+                                                        <span>
+                                                            00:20:13
+                                                            <i className="fas fa-clock ms-1"></i>
+                                                        </span>
+                                                    </div>
                                                 ))
                                                 : (<p>محتوایی آپلود نشده</p>)
                                         }
